@@ -1,1 +1,1 @@
-export type TraitModel = [string, boolean]
+export type Trait = [string, boolean]

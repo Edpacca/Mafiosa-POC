@@ -1,4 +1,4 @@
-import { TraitModel } from "../models/TraitModel";
+import { Trait } from "../models/TraitModel";
 
 export const TRAIT_NAMES: string[] = [
     "violence",
@@ -10,9 +10,9 @@ export const TRAIT_NAMES: string[] = [
     "religion"
 ]
 
-export const TRAITS: TraitModel[] = [];
+export const TRAITS_DATA: Trait[] = [];
 
 TRAIT_NAMES.forEach(trait => {
-    TRAITS.push([trait, true]);
-    TRAITS.push([trait, false]);
+    TRAITS_DATA.push([trait, true]);
+    TRAITS_DATA.push([trait, false]);
 });

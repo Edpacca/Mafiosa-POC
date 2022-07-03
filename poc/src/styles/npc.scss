@@ -1,0 +1,53 @@
+.npc-rank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+    margin: 1em;
+}
+
+.npc-wrapper {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2em;
+    height: 8em;
+    width: 10em;
+}
+
+.npc-header {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 2em 1fr;
+}
+
+.rank {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: left;
+}
+
+.A {
+    color: red;
+}
+
+.B {
+    color: orange;
+}
+
+.C {
+    color: blue;
+}
+
+.D {
+    color: green;
+}
+
+.name {
+    font-style: italic;
+    font-size: 1.2em;
+    text-align: left;
+}
+
