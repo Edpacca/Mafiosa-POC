@@ -1,0 +1,1 @@
+export type Chance = 'low' | 'equal' | 'high'
