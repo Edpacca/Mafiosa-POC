@@ -18,15 +18,15 @@ export const ACTION_DATA: Action[] = [
         name: "Invite to bar",
         positiveOutcome: {
             result: {
-                opinionPoints: 2,
-                actionPoints: 0
+                opinionPoints: 1,
+                actionPoints: 1
             },
             target: 'single'
         },
         negativeOutcome: {
             result: {
-                opinionPoints: -2,
-                actionPoints: 0
+                opinionPoints: -1,
+                actionPoints: -1
             },
             target: 'single'
         },
@@ -45,15 +45,15 @@ export const ACTION_DATA: Action[] = [
         name: "Invite to casino",
         positiveOutcome: {
             result: {
-                opinionPoints: 0,
+                opinionPoints: 2,
                 actionPoints: 2
             },
             target: 'single'
         },
         negativeOutcome: {
             result: {
-                opinionPoints: 0,
-                actionPoints: -1
+                opinionPoints: -2,
+                actionPoints: -2
             },
             target: 'single'
         },
@@ -72,15 +72,15 @@ export const ACTION_DATA: Action[] = [
         name: "Invite to dirty job",
         positiveOutcome: {
             result: {
-                opinionPoints: 2,
-                actionPoints: 0
+                opinionPoints: 3,
+                actionPoints: 3
             },
             target: 'single'
         },
         negativeOutcome: {
             result: {
-                opinionPoints: -2,
-                actionPoints: 0
+                opinionPoints: -3,
+                actionPoints: -3
             },
             target: 'single'
         },
@@ -99,15 +99,15 @@ export const ACTION_DATA: Action[] = [
         name: "Invite to brothel",
         positiveOutcome: {
             result: {
-                opinionPoints: 2,
-                actionPoints: 0
+                opinionPoints: 4,
+                actionPoints: 4
             },
             target: 'single'
         },
         negativeOutcome: {
             result: {
-                opinionPoints: -2,
-                actionPoints: 0
+                opinionPoints: -4,
+                actionPoints: -4
             },
             target: 'single'
         },
@@ -127,7 +127,7 @@ export const ACTION_DATA: Action[] = [
         positiveOutcome: {
             result: {
                 opinionPoints: 2,
-                actionPoints: 0
+                actionPoints: 1
             },
             target: 'single'
         },
@@ -153,15 +153,15 @@ export const ACTION_DATA: Action[] = [
         name: "Challenge to race",
         positiveOutcome: {
             result: {
-                opinionPoints: 2,
-                actionPoints: 0
+                opinionPoints: 3,
+                actionPoints: -1
             },
             target: 'single'
         },
         negativeOutcome: {
             result: {
                 opinionPoints: -2,
-                actionPoints: 0
+                actionPoints: -1
             },
             target: 'single'
         },
