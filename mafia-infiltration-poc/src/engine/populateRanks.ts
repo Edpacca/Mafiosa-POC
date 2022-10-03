@@ -35,7 +35,6 @@ function generateNpc(rank: Rank, rankId: number, numberOfTraits: number): NpcMod
         name,
         traits,
         rank,
-        playerOpinion: 5
     }
 }
 
@@ -51,5 +50,4 @@ function getUniqueListItem<l>(sourceList: l[], targetList: l[]): l {
     } else {
         return item;
     }
-
 }

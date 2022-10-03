@@ -1,18 +1,28 @@
 <script lang="ts">
-	import { npcData, rankPopulationRatio, numberOfTraits } from './store/store';
+	import { npcData, opinionTable, RANK_POPULATION_RATIO, NUMBER_OF_TRAITS, DEFAULT_OPINION } from './store/store';
 	import { populateRanks } from './engine/populateRanks';
     import NpcArea from './components/npc/NpcArea.svelte';
     import PlayerArea from './components/player/PlayerArea.svelte';
+    import { populateOpinionTable } from './engine/populateOpinions';
+    import OpinionTable from './components/opinions/OpinionTable.svelte';
 
 	const regenerateNpcData = () => {
-		$npcData =  populateRanks(rankPopulationRatio, numberOfTraits)
+		$npcData =  populateRanks(RANK_POPULATION_RATIO, NUMBER_OF_TRAITS);
+		$opinionTable = populateOpinionTable($npcData, DEFAULT_OPINION);
 	}
+
+	let isOtVisible = true;
 </script>
 
 <main>
 	<button on:click={regenerateNpcData}>Regenerate NPCs</button>
-	<NpcArea />
-	<PlayerArea />
+	<button on:click={() => isOtVisible = !isOtVisible}>{isOtVisible ? "Hide" : "Show"} opinions</button>
+	{#if isOtVisible}
+		<OpinionTable />
+	{:else}
+		<NpcArea />
+		<PlayerArea />
+	{/if}
 </main>
 
 <style>

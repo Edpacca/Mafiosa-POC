@@ -6,5 +6,4 @@ export interface NpcModel {
     id: string,
     traits: Trait[],
     rank: Rank,
-    playerOpinion: number,
 }

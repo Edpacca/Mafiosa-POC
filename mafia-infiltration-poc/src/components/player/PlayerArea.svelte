@@ -1,10 +1,7 @@
 <script lang="ts">
-    import { currentTurn, actionPoints, selectedNpc, selectedAction } from "../../store/store";
+    import { currentTurn, actionPoints, selectedNpc, selectedAction, getPlayerOpinion } from "../../store/store";
     import { ACTION_DATA } from "../../data/actionsData";
     import ActionProbabilities from "./ActionProbabilities.svelte";
-    import App from "../../App.svelte";
-    import Npc from "../npc/Npc.svelte";
-    import NpcArea from "../npc/NpcArea.svelte";
 </script>
 
 <div class="player-area">
@@ -20,7 +17,7 @@
             {#if $selectedNpc}
             <div class="info">
                 <div>Rank: <span class="gold">{$selectedNpc.rank}</span></div>
-                <div>Opinion of player: <span class="gold">{$selectedNpc.playerOpinion}</span></div>
+                <div>Opinion of player: <span class="gold">{getPlayerOpinion($selectedNpc)}</span></div>
                 <ul>
                     {#each $selectedNpc.traits as trait}
                     <li class="gold">{trait}</li>

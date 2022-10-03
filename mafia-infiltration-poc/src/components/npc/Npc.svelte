@@ -13,10 +13,6 @@
         <div class="name">{data.name}</div>
     </div>
 
-    <div class="opinion">
-        opinion of player: {data.playerOpinion}
-    </div>
-
     <div class="traits">
         {#each data.traits as trait}
             <div class="trait">{trait}</div>
