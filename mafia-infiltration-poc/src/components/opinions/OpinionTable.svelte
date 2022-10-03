@@ -18,7 +18,11 @@
             <tr>
                 <td class={i > 0 ? "" : "player"}>{row.recipientId}</td>
                 {#each row.opinionValues as opinionValue}
-                    <td class={i > 0 ? "" : "player"}>{opinionValue[0] === row.recipientId ? '-' : opinionValue[1]}</td>
+                    <td class={
+                        `${i > 0 ? "" : "player"}
+                        ${opinionValue[1] < 5 ? "neg" : opinionValue[1] > 5 ? "pos" : ""}`}>
+                        {opinionValue[0] === row.recipientId ? '-' : opinionValue[1]}
+                    </td>
                 {/each}
             </tr>
         {/each}
@@ -46,5 +50,13 @@
     .player {
         background: black;
         color: goldenrod;
+    }
+
+    .neg {
+        color: rgb(255, 37, 37);
+    }
+
+    .pos {
+        color: yellowgreen;
     }
 </style>

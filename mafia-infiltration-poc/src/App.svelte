@@ -11,7 +11,7 @@
 		$opinionTable = populateOpinionTable($npcData, DEFAULT_OPINION);
 	}
 
-	let isOtVisible = true;
+	let isOtVisible = false;
 </script>
 
 <main>

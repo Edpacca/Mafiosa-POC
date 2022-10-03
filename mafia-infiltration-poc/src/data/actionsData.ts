@@ -1,4 +1,4 @@
-import type { Action } from "../models/types/ActionModel"
+import type { Action } from "../models/interfaces/ActionModel"
 
 export const ACTION_NAMES: string[] = [
     "Invite to bar",
@@ -31,14 +31,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -58,14 +58,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: -1 },
+            {trait: "calculated", chanceOfSuccess: 1},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: -1 },
+            {trait: "loyal", chanceOfSuccess: 1 },
+            {trait: "disloyal", chanceOfSuccess: 1 },
+            {trait: "ambitious", chanceOfSuccess: 1 },
+            {trait: "lazy", chanceOfSuccess: -1 }
         ]
     },
     {
@@ -85,14 +85,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 0 },
+            {trait: "calculated", chanceOfSuccess: -1},
+            {trait: "socialiser", chanceOfSuccess: 0 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: -1 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 0 }
         ]
     },
     {
@@ -112,14 +112,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: -1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: -1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 1 },
+            {trait: "disloyal", chanceOfSuccess: -1 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -139,14 +139,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -166,14 +166,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -193,14 +193,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -220,14 +220,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -247,14 +247,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     },
     {
@@ -274,14 +274,14 @@ export const ACTION_DATA: Action[] = [
             target: 'single'
         },
         traitChances: [
-            {trait: "impulsive", chanceOfSuccess: 'high' },
-            {trait: "calculated", chanceOfSuccess: 'equal'},
-            {trait: "socialiser", chanceOfSuccess: 'high' },
-            {trait: "handyman", chanceOfSuccess: 'high' },
-            {trait: "loyal", chanceOfSuccess: 'equal' },
-            {trait: "disloyal", chanceOfSuccess: 'equal' },
-            {trait: "ambitious", chanceOfSuccess: 'low' },
-            {trait: "lazy", chanceOfSuccess: 'high' }
+            {trait: "impulsive", chanceOfSuccess: 1 },
+            {trait: "calculated", chanceOfSuccess: 0},
+            {trait: "socialiser", chanceOfSuccess: 1 },
+            {trait: "handyman", chanceOfSuccess: 1 },
+            {trait: "loyal", chanceOfSuccess: 0 },
+            {trait: "disloyal", chanceOfSuccess: 0 },
+            {trait: "ambitious", chanceOfSuccess: -1 },
+            {trait: "lazy", chanceOfSuccess: 1 }
         ]
     }
 ]

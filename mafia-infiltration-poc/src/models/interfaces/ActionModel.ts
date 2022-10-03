@@ -1,6 +1,6 @@
-import type { Outcome } from "../interfaces/OutcomeModel";
-import type { Chance } from "./ChanceModel";
-import type { Trait } from "./TraitModel";
+import type { Outcome } from "./OutcomeModel";
+import type { Chance } from "../types/ChanceModel";
+import type { Trait } from "../types/TraitModel";
 
 export interface Action {
     name: string,

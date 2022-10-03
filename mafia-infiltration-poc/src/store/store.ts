@@ -3,7 +3,9 @@ import { populateOpinionTable } from "../engine/populateOpinions";
 import { populateRanks } from "../engine/populateRanks";
 import type { NpcModel } from "../models/interfaces/NpcModel";
 import type { OpinionTableRow } from "../models/interfaces/OpinionModel";
-import type { Action } from "../models/types/ActionModel";
+import type { Action } from "../models/interfaces/ActionModel";
+import type { SubmittedAction } from "../models/interfaces/SubmittedActionModel";
+import type { CompletedAction } from "../models/interfaces/CompletedActionModel";
 
 export const RANK_POPULATION_RATIO = 3;
 export const NUMBER_OF_TRAITS = 3;
@@ -15,9 +17,12 @@ export const opinionTable: Writable<OpinionTableRow[]> = writable(populateOpinio
 export const selectedNpc: Writable<NpcModel | undefined> = writable(undefined);
 
 export const currentTurn: Writable<number> = writable(1);
-export const actionPoints: Writable<number> = writable(10);
+export const actionPoints: Writable<number> = writable(3);
 export const selectedAction: Writable<Action> = writable(undefined);
 
 export const getPlayerOpinion = (npc: NpcModel): number => {
     return get(opinionTable)[0].opinionValues.find(value => value[0] === npc.id)[1];
 }
+
+export const submittedActions: Writable<SubmittedAction[]> = writable([]);
+export const completedActions: Writable<CompletedAction[]> = writable([]);

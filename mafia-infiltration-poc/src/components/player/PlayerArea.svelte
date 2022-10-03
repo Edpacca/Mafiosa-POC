@@ -1,57 +1,124 @@
 <script lang="ts">
-    import { currentTurn, actionPoints, selectedNpc, selectedAction, getPlayerOpinion } from "../../store/store";
+    import { 
+        currentTurn, actionPoints, 
+        selectedNpc, selectedAction, 
+        submittedActions, completedActions,
+        getPlayerOpinion } from "../../store/store";
     import { ACTION_DATA } from "../../data/actionsData";
     import ActionProbabilities from "./ActionProbabilities.svelte";
+    import SelectedAction from "./SelectedAction.svelte";
+    import { calculateActionProbability } from "../../engine/calculateProbability";
+    import type { SubmittedAction } from "../../models/interfaces/SubmittedActionModel";
+    import { rollPlayerAction } from "../../engine/rollAction";
+
+    const submitAction = () => {
+        if ($actionPoints > 0) {
+            const submittedAction: SubmittedAction = {
+            action: $selectedAction,
+            recipient: $selectedNpc,
+            probabilty: calculateActionProbability($selectedAction, $selectedNpc)
+        };
+        $submittedActions = [...$submittedActions, submittedAction];
+        $selectedAction = undefined;
+        $selectedNpc = undefined;
+        $actionPoints -= 1;
+        }
+    }
+
+    const removeAction = (submittedAction: SubmittedAction) => {
+        $submittedActions = $submittedActions.filter(sa => sa !== submittedAction);
+        $actionPoints += 1;
+    }
+
+    const endTurn = () => {
+        $submittedActions.forEach(subAction => {
+            $completedActions = [...$completedActions, rollPlayerAction(subAction)]
+        });
+
+        $submittedActions = [];
+        $actionPoints += 3;
+        $currentTurn += 1;
+    }
 </script>
 
 <div class="player-area">
     <div class="header1 center">Player area</div>
-    <div class="header1 center">{$selectedAction?.positiveOutcome.result.opinionPoints}</div>
     <div class="grid">
         <div class="resources bordered header2">
             <div>Current turn:</div> <div class="gold">{$currentTurn}</div> 
             <div>Action Points:</div> <div class="gold">{$actionPoints}</div>
         </div>
-        <div class="bordered current-action">
-            <div class="header2">Selected NPC: <span class="gold">{$selectedNpc ? $selectedNpc.name : ""}</span></div>
-            {#if $selectedNpc}
-            <div class="info">
-                <div>Rank: <span class="gold">{$selectedNpc.rank}</span></div>
-                <div>Opinion of player: <span class="gold">{getPlayerOpinion($selectedNpc)}</span></div>
-                <ul>
-                    {#each $selectedNpc.traits as trait}
-                    <li class="gold">{trait}</li>
-                    {/each}
-                </ul>
-            </div>
-            {/if}
-            <div class="header2">Selected Action: <span class="gold">{$selectedAction ? $selectedAction.name : ""}</span></div>
-            {#if $selectedAction}
-                <div class="selected-action">
-                    <div class="info">
-                        <div class="positive">
-                            {#if $selectedAction.positiveOutcome.result.opinionPoints !== 0} 
-                            <div>{`${$selectedAction.positiveOutcome.result.opinionPoints > 0 ? "+" : ""}${$selectedAction.positiveOutcome.result.opinionPoints} opinion`}</div>
-                            {/if}
-                            {#if $selectedAction.positiveOutcome.result.actionPoints !== 0} 
-                            <div>{`${$selectedAction.positiveOutcome.result.actionPoints > 0 ? "+" : ""}${$selectedAction.positiveOutcome.result.actionPoints} action points`}</div>
-                            {/if}
-                        </div>
-                        <div class="negative">
-                            {#if $selectedAction.negativeOutcome.result.opinionPoints !== 0} 
-                            <div>{`${$selectedAction.negativeOutcome.result.opinionPoints > 0 ? "+" : ""}${$selectedAction.negativeOutcome.result.opinionPoints} opinion`}</div>
-                            {/if}
-                            {#if $selectedAction.negativeOutcome.result.actionPoints !== 0} 
-                            <div>{`${$selectedAction.negativeOutcome.result.actionPoints > 0 ? "+" : ""}${$selectedAction.negativeOutcome.result.actionPoints} action points`}</div>
-                            {/if}
-                        </div>
-                    </div>
-                </div>
+        <div class="current-action">
+            <div class="bordered">
+                <div class="header2">Selected NPC: <span class="gold">{$selectedNpc ? $selectedNpc.name : ""}</span></div>
                 {#if $selectedNpc}
-                    <ActionProbabilities bind:action={$selectedAction} bind:traits={$selectedNpc.traits}/>
+                <div class="info">
+                    <div>Rank: <span class="gold">{$selectedNpc.rank}</span></div>
+                    <div>Opinion of player: <span class="gold">{getPlayerOpinion($selectedNpc)}</span></div>
+                    <ul>
+                        {#each $selectedNpc.traits as trait}
+                        <li class="gold">{trait}</li>
+                        {/each}
+                    </ul>
+                </div>
                 {/if}
-            {/if}
+                <div class="header2">Selected Action: <span class="gold">{$selectedAction ? $selectedAction.name : ""}</span></div>
+                {#if $selectedAction}
+                    <SelectedAction/>
+                    {#if $selectedNpc}
+                        <ActionProbabilities/>
+                        <button on:click={submitAction} class="submit">Submit Action</button>
+                    {/if}
+                {/if}
             </div>
+            <div class="bordered">
+                <div class="header1 center">Submitted Actions</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NPC</th>
+                            <th>Action</th>
+                            <th>Chance of success</th>
+                            <th>remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each $submittedActions as submittedAction}
+                            <tr>
+                                <td>{submittedAction.recipient.name}</td>
+                                <td>{submittedAction.action.name}</td>
+                                <td>{submittedAction.probabilty}%</td>
+                                <td><button class="remove" on:click={() => removeAction(submittedAction)}>-</button></td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+                {#if $submittedActions.length > 0}
+                    <button class="submit" on:click={() => endTurn()}>End Round</button>
+                {/if}
+            </div>
+            <div class="bordered">
+                <div class="header1 center">Actions history</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NPC</th>
+                            <th>Action</th>
+                            <th>success?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each $completedActions as completedAction}
+                            <tr>
+                                <td>{completedAction.recipient.name}</td>
+                                <td>{completedAction.action.name}</td>
+                                <td>{completedAction.success ? "yes" : "no" }</td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="bordered">
             <div class="header3 center">Actions</div>
             <div class="actions">
@@ -60,6 +127,7 @@
                 {/each}
             </div>
         </div>
+
     </div>
 </div>
 
@@ -74,7 +142,7 @@
 
     .resources {
         display: grid;
-        grid-template-columns: 60% 1fr;
+        grid-template-columns: 2fr 1fr;
     }
 
     .grid {
@@ -87,8 +155,10 @@
 
     .current-action {
         grid-row: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 1em;
     }
-
 	.bordered {
 		border: 2px solid rgb(50, 50, 50);
 	}
@@ -110,21 +180,39 @@
         background-color: goldenrod
     }
 
-    .info {
-        font-size: 1.4em;
-        margin-top: 0.5em;
-    }
+    .submit {
+        width: 80%;
+        margin-left: 10%;
+        height: 2em;
+        border: 8px;
+        background: blanchedalmond;
+        font-weight: bold;
+        font-size: 1.5em;
+    }   
 
-    .positive {
-        color: green;
-        display: flex;
-        column-gap: 1em;
-    }
-
-    .negative {
+    .submit:hover {
+        background: goldenrod;
         color: red;
-        display: flex;
-        column-gap: 1em;
     }
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        margin-bottom: 2em;
+    }
+
+    thead > tr > th {
+        border-bottom: 1px solid blanchedalmond;
+    }
+
+    .remove {
+        background: red;
+        border-radius: 100%;
+        font-weight: bold;
+    }
+
+    .remove:hover {
+        background: rgb(209, 87, 87);
+    }
 </style>

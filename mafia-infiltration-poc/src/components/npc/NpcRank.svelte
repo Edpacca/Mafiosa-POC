@@ -1,12 +1,16 @@
 <script lang="ts">
     import type { NpcModel } from "../../models/interfaces/NpcModel"
+    import { selectedNpc, submittedActions } from "../../store/store";
     export let npcs: NpcModel[];
     import Npc from "./Npc.svelte";
 </script>
 
 <div class="npc-rank">
     {#each npcs as npc}
-        <Npc data={npc}/>
+        <Npc 
+            data={npc}
+            isSelected={$selectedNpc === npc}
+            isSubmitted={$submittedActions.map(sa => sa.recipient).includes(npc)}/>
     {/each}
 </div>
 
