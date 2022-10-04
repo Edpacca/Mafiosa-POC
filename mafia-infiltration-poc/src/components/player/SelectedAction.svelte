@@ -36,7 +36,6 @@
 </div>
 
 <style>
-    
     .selected-action {
         font-size: 1.4em;
         margin-top: 0.5em;

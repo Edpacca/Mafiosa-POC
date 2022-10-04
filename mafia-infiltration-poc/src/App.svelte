@@ -3,7 +3,7 @@
 	import { populateRanks } from './engine/populateRanks';
     import NpcArea from './components/npc/NpcArea.svelte';
     import PlayerArea from './components/player/PlayerArea.svelte';
-    import { populateOpinionTable } from './engine/populateOpinions';
+    import { populateOpinionTable } from './engine/populateOpinionTable';
     import OpinionTable from './components/opinions/OpinionTable.svelte';
 
 	const regenerateNpcData = () => {
@@ -15,8 +15,10 @@
 </script>
 
 <main>
-	<button on:click={regenerateNpcData}>Regenerate NPCs</button>
-	<button on:click={() => isOtVisible = !isOtVisible}>{isOtVisible ? "Hide" : "Show"} opinions</button>
+	<div class="button-container">
+		<button on:click={regenerateNpcData}>Regenerate NPCs</button>
+		<button on:click={() => isOtVisible = !isOtVisible}>{isOtVisible ? "Hide" : "Show"} opinions</button>
+	</div>
 	{#if isOtVisible}
 		<OpinionTable />
 	{:else}
@@ -26,6 +28,10 @@
 </main>
 
 <style>
+
+	.button-container {
+		position: absolute;
+	}
 	button {
 		font-family: 'Finlandica';
 		background: rgb(15, 15, 15);

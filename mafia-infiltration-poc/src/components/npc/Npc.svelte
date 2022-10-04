@@ -1,19 +1,20 @@
 <script lang="ts">
+    import { selectedNpc, actionPoints } from "../../store/store";
     import type { NpcModel } from "../../models/interfaces/NpcModel";
-    import { selectedNpc } from "../../store/store";
     export let data: NpcModel;
     export let isSelected: boolean = false;
     export let isSubmitted: boolean = false;
     const rankStyle = `rank ${data.rank}`
+    $: classString = `${isSubmitted ? "submitted" : isSelected ? "selected" : ""} npc-wrapper ${$actionPoints <= 0 ? "no-ap" : ""}`;
 
     const selectNpc = () => {
-        if (!isSubmitted) {
+        if (!isSubmitted && $actionPoints > 0) {
             $selectedNpc = data;
         }
-    } 
+    }
 </script>
 
-<div class={`${isSubmitted ? "submitted" : isSelected ? "selected" : ""} npc-wrapper`} on:click={selectNpc}>
+<div class={classString} on:click={selectNpc}>
     <div class="npc-header">
         <div class={rankStyle}>{data.id}</div>
         <div class="name">{data.name}</div>
@@ -24,18 +25,18 @@
             <div class="trait">{trait}</div>
         {/each}
     </div>
-
-
 </div>
 
 <style>
-
-
     .npc-wrapper {
         border: 2px solid rgb(0, 0, 0);
         padding: 0.2em;
         width: 15em;
-        height: 8em;
+    }
+
+    .no-ap {
+        background: rgb(207, 207, 207);
+        color: rgb(90, 90, 90);
     }
 
     .selected {
@@ -44,9 +45,10 @@
 
     .submitted {
         background: rgb(72, 72, 72);
+        color: gold;
     }
 
-    .npc-wrapper:not(.selected):not(.submitted):hover {
+    .npc-wrapper:not(.selected):not(.submitted):not(.no-ap):hover {
         border: 2px solid rgb(0, 6, 97);
         background: rgb(200, 255, 252);
     }

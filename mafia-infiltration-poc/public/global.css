@@ -25,3 +25,28 @@ body {
 .gold {
 	color: goldenrod;
 }
+
+.bordered {
+	border: 2px solid rgb(50, 50, 50);
+}
+
+.mini-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	margin-bottom: 2em;
+}
+
+.mini-table > thead > tr > th {
+	border-bottom: 1px solid blanchedalmond;
+}
+
+.remove-button {
+	background: red;
+	border-radius: 100%;
+	font-weight: bold;
+}
+
+.remove-button:hover {
+	background: rgb(209, 87, 87);
+}

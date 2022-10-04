@@ -6,3 +6,7 @@ export interface CompletedAction {
     recipient: NpcModel;
     success: boolean;
 }
+
+export interface CompletedNpcAction extends CompletedAction {
+    actor: NpcModel;
+}

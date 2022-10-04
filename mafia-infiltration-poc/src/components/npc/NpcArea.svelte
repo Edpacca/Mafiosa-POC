@@ -10,4 +10,7 @@
 </div>
 
 <style>
+    .npc-area {
+        
+    }
 </style>

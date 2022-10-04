@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { NpcModel } from "../../models/interfaces/NpcModel"
-    import { selectedNpc, submittedActions } from "../../store/store";
+    import { selectedNpc, queuedActions } from "../../store/store";
     export let npcs: NpcModel[];
     import Npc from "./Npc.svelte";
 </script>
@@ -10,7 +10,7 @@
         <Npc 
             data={npc}
             isSelected={$selectedNpc === npc}
-            isSubmitted={$submittedActions.map(sa => sa.recipient).includes(npc)}/>
+            isSubmitted={$queuedActions.map(sa => sa.recipient).includes(npc)}/>
     {/each}
 </div>
 
@@ -21,6 +21,5 @@
 		align-items: center;
 		column-gap: 1em;
 		margin: 1em;
-        min-height: 8em;
 	}
 </style>

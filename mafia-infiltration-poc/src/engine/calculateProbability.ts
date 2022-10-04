@@ -1,7 +1,5 @@
-import type Npc from "../components/npc/Npc.svelte";
 import type { Action } from "../models/interfaces/ActionModel";
 import type { NpcModel } from "../models/interfaces/NpcModel";
-import type { SubmittedAction } from "../models/interfaces/SubmittedActionModel";
 import type { Chance } from "../models/types/ChanceModel";
 import type { Trait } from "../models/types/TraitModel";
 
